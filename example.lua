@@ -3,9 +3,9 @@
 
 local repo = 'https://raw.githubusercontent.com/sillyconvicted/linoria-enhanced/main/'
 
-local Library = loadstring(game:HttpGet('https://pastebin.com/raw/u1kMLQjF'))()
-local ThemeManager = loadstring(game:HttpGet('https://pastebin.com/raw/5CqaQuND'))()
-local SaveManager = loadstring(game:HttpGet('https://pastebin.com/raw/RyGiSwHb'))()
+local Library = loadstring(game:HttpGet(repo .. 'Library.lua'))()
+local ThemeManager = loadstring(game:HttpGet(repo .. 'addons/ThemeManager.lua'))()
+local SaveManager = loadstring(game:HttpGet(repo .. 'addons/SaveManager.lua'))()
 
 local Window = Library:CreateWindow({
     -- Set Center to true if you want the menu to appear in the center
