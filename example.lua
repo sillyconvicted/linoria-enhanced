@@ -18,7 +18,7 @@ local Window = Library:CreateWindow({
     AutoShow = true,
     TabPadding = 8,
     MenuFadeTime = 0.2,
-    AccentColor = Color3.fromRGB(255, 255, 255), -- lzov knows how to suck dick
+    AccentColor = Color3.fromRGB(255, 255, 255), 
 })
 
 -- CALLBACK NOTE:

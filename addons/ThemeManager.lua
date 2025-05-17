@@ -65,7 +65,25 @@ local ThemeManager = {} do
 		end
 
 		if isDefault then
-			Options.ThemeManager_ThemeList:SetValue(theme)
+			if self.Library.InitialAccentColor then
+				local customTheme = {
+					FontColor = self.Library.FontColor:ToHex(),
+					MainColor = self.Library.MainColor:ToHex(),
+					AccentColor = self.Library.InitialAccentColor:ToHex(),
+					BackgroundColor = self.Library.BackgroundColor:ToHex(),
+					OutlineColor = self.Library.OutlineColor:ToHex(),
+				}
+				
+				for idx, col in next, customTheme do
+					if Options[idx] then
+						Options[idx]:SetValueRGB(Color3.fromHex(col))
+					end
+				end
+				
+				self:ThemeUpdate()
+			else
+				Options.ThemeManager_ThemeList:SetValue(theme)
+			end
 		else
 			self:ApplyTheme(theme)
 		end
@@ -78,7 +96,11 @@ local ThemeManager = {} do
 	function ThemeManager:CreateThemeManager(groupbox)
 		groupbox:AddLabel('Background color'):AddColorPicker('BackgroundColor', { Default = self.Library.BackgroundColor });
 		groupbox:AddLabel('Main color')	:AddColorPicker('MainColor', { Default = self.Library.MainColor });
-		groupbox:AddLabel('Accent color'):AddColorPicker('AccentColor', { Default = self.Library.AccentColor });
+		
+		-- Use the initial accent color if available, otherwise use the current accent color
+		local accentColor = self.Library.InitialAccentColor or self.Library.AccentColor
+		groupbox:AddLabel('Accent color'):AddColorPicker('AccentColor', { Default = accentColor });
+		
 		groupbox:AddLabel('Outline color'):AddColorPicker('OutlineColor', { Default = self.Library.OutlineColor });
 		groupbox:AddLabel('Font color')	:AddColorPicker('FontColor', { Default = self.Library.FontColor });
 
